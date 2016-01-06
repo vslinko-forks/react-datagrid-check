@@ -6,12 +6,17 @@ let initialData     =  [
   { id: 2, index: 3, firstName: 'Click-me', lastName: 'London3', country: 'jon@gmail.com3'}
 ];
 
+
 export default function reducer(state = {data: initialData}, action) {
 
   switch (action.type) {
     case KEY_UPDATE:
-      state.data[action.rowId]['firstName']+="-more";
-      return {data: state.data}
+      const newdata=state.data.map(function(item, num){
+        if (num==action.rowId)
+          item.firstName+="-more";
+        return item
+      })
+      state={...state, data: newdata};
       return state
 
     default:
