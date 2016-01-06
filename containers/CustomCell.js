@@ -1,34 +1,23 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { keyUpdate } from '../actions/action'
-import CustomCellData from '../components/CustomCell'
+import CustomCell from '../components/CustomCell'
 
-let state_is_changed=false;
 export default compose(
     connect(
         state => {
-            if (state.reducer != "") {
-                state_is_changed=true;
-                state.reducer="";
-            }
-            return {
-                grid: {}
-            }
+            console.log('updating state for CustomCell');
+            return {}
         },
         (dispatch) => ({
-            onElementClick: (grid) => {
-                dispatch(keyUpdate(grid));
+            onElementClick: (val,rowId) => {
+                dispatch(keyUpdate(val,rowId));
             }
         }),
         (stateProps, dispatchProps, parentProps) => {
-            console.log(parentProps.grid);
-            let ret = {
+            return {
                 data: parentProps.data,
-                state_is_changed: state_is_changed,
-                grid: parentProps.grid,
-                onElementClick: () => {dispatchProps.onElementClick(parentProps.grid)}
-            };
-            if (state_is_changed) state_is_changed=false;
-            return ret;
+                onElementClick: () => {dispatchProps.onElementClick(parentProps.data,parentProps.id)}
+            }
         }
-    ))(CustomCellData);
+    ))(CustomCell);
