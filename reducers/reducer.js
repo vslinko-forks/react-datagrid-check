@@ -11,7 +11,7 @@ export default function reducer(state = {data: initialData}, action) {
 
   switch (action.type) {
     case KEY_UPDATE:
-      const newdata=state.data.map(function(item, num){
+      const newdata=state.data.map((item, num)=>{
         if (num==action.rowId)
           item.firstName+="-more";
         return item
