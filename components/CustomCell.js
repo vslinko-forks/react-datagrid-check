@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import React from 'react';
 
 export default class CustomCell extends React.Component {
   render() {
