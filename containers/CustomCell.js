@@ -11,7 +11,7 @@ export default compose(
         }
         (stateProps, dispatchProps, parentProps) => ({
             data: parentProps.data,
-            onElementClick: () => dispatchProps.onElementClick(parentProps.data,parentProps.id)
+            onElementClick: () => dispatchProps.onElementClick({data: parentProps.data, id: parentProps.id})
         })
     )
 )(CustomCell);
